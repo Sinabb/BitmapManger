@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "ActorExample.h"
+#include "D2DFramework.h"
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
@@ -7,7 +7,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,
     _In_ int nShowCmd)
 {
     try {
-        ActorExample myFramework;
+        D2DFramework myFramework;
 
         myFramework.Initialize(hInstance, L"Framework", 1024, 768);
         int ret = myFramework.GameLoop();
