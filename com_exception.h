@@ -1,29 +1,27 @@
 #pragma once
 #include <exception>
-#include <winerror.h>
-#include <Windows.h>
-#include <stdio.h>
 #include <string>
+#include <winerror.h>
+#include <stdio.h>
 
 // COM Exception
 class com_exception : public std::exception {
-
 private:
 	HRESULT result;
 	std::string description;
 
 public:
-	com_exception(HRESULT hr) : com_exception(hr, " ") {}
-	com_exception(HRESULT hr, std::string msg) : result(hr), description (msg) {}
+	com_exception(HRESULT hr) : result(hr), description() {}
+	com_exception(HRESULT hr, std::string msg) : result(hr), description(msg) {}
 	virtual const char* what() const override
 	{
-		static char str[512]{};
-		sprintf_s(str, "Failed with HRESUL : %08X\n%s", result, description.c_str());
+		static char str[512]{}; 
+		sprintf_s(str, "Failed with HRESUL : %08X\n%s\n", result, description.c_str());
 		return str;
 	}
 };
 
-inline void ThrowIfFailed(HRESULT hr, std::string msg = "")
+inline void ThrowIfFailed(HRESULT hr, std::string msg = "") 
 {
 	if (FAILED(hr))
 	{
