@@ -146,7 +146,6 @@ LRESULT D2DFramework::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
     switch (message)
     {
-
     case WM_CLOSE:
         DestroyWindow(hwnd);
         break;
